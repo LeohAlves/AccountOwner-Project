@@ -9,6 +9,35 @@
 /* Adicionar o projeto na solução */
     dotnet sln add AccountOwnerServer\AccountOwnerServer.csproj
 
+/* Estando na pasta backend */
+/* cria o projeto de biblioteca de classes para interfaces */
+dotnet new classlib --name Contracts -f net6.0
+
+/* Adicionar o projeto na solução */
+dotnet sln add Contracts\Contracts.csproj
+
+/*Adicionaro projeto no serviço do log */
+dotnet new classlib --name LoggerService -f net6.0
+
+/* Adicionar o projeto na solução */
+dotnet sln add LoggerService\LoggerService.csproj
+
+/*adicionar referências do Contracts no LoggerService */
+
+dotnet add LoggerService\LoggerService.csproj reference Contracts\Contracts.csproj
+
+/*adicionar referências do LoggerService na API */
+
+dotnet add AccountOwnerServer\AccountOwnerServer.csproj reference LoggerService\LoggerService.csproj
+
+/*dentro da pasta LoggerService instalar o pacote NLog -Nuget  */ dotnet add package NLog.Extensions.Logging --version 5.2.1
+
+
+
+
+
+
+
 /* comandos git */
     cd ..               -> voltar ate a pasta do projeto
     git add .
