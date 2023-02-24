@@ -30,11 +30,17 @@ dotnet add LoggerService\LoggerService.csproj reference Contracts\Contracts.cspr
 
 dotnet add AccountOwnerServer\AccountOwnerServer.csproj reference LoggerService\LoggerService.csproj
 
-/*dentro da pasta LoggerService instalar o pacote NLog -Nuget  */ dotnet add package NLog.Extensions.Logging --version 5.2.1
+/*dentro da pasta LoggerService instalar o pacote NLog -Nuget  */ 
+dotnet add package NLog.Extensions.Logging --version 5.2.1
 
+/* Adicionar projeto da Entidades -Models*/
+dotnet new classlib --name Entities -f net6.0
 
+/* Adicionar o projeto na solução */
+dotnet sln add Entities\Entities.csproj
 
-
+/* instalar o pacote do pomelo dentro da pasta entities */
+dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.2
 
 
 
