@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Entities.Models
-{
+namespace Entities.Models;
+
     [Table("Account")]
     public class Account
     {
@@ -20,4 +20,3 @@ namespace Entities.Models
         public Guid OwnerId { get; set; }
         public Owner Owner { get; set; }
     }
-}
