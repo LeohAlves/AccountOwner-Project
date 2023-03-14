@@ -1,26 +1,21 @@
 using Contracts;
 using Microsoft.AspNetCore.Mvc;
-
 namespace AccountOwnerServer.Controllers;
-
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-
-    private readonly ILoggerManager _logger;
-
-    public WeatherForecastController(ILoggerManager logger)
+    private IRepositoryWrapper _repository;
+    public WeatherForecastController(IRepositoryWrapper repository)
     {
-        _logger = logger;
+        _repository = repository;
     }
     [HttpGet]
     public IEnumerable<string> Get()
     {
-         _logger.LogInfo("Testando o log de Informação pelo controler");
-         _logger.LogWarn("Testando o log de aviso pelo controler");
-         _logger.LogError("Testando o log de erro pelo controler");
-         _logger.LogDebug("Testando o log de Debug pelo controler");
-        return new string []{"valor1", "valor2"};
+        var domesticAccounts = _repository.Account
+        .FindByCondition(x => x.AccountType.Equals("Domestic"));
+        var owners = _repository.Owner.FindAll();
+        return new string[] { "value1", "value2" };
     }
 }
